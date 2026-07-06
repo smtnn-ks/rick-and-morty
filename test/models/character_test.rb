@@ -25,10 +25,15 @@ class CharacterTest < ActiveSupport::TestCase
     assert_not @character.valid?
   end
 
-  test "character_type is required" do
+  test "character_type null is valid" do
     @character.character_type = nil
-    assert_not @character.valid?
+    assert @character.valid?
 
+    @character.character_type = ""
+    assert_not @character.valid?
+  end
+
+  test "character_type empty string is not valid" do
     @character.character_type = ""
     assert_not @character.valid?
   end

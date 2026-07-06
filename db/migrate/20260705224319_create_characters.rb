@@ -4,7 +4,7 @@ class CreateCharacters < ActiveRecord::Migration[8.1]
       t.string :name
       t.string :status
       t.string :species
-      t.string :character_type
+      t.string :character_type, null: true
       t.string :gender
 
       t.references :origin_location, foreign_key: { to_table: :locations }, null: true

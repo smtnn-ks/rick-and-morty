@@ -1,7 +1,7 @@
 class Character < ApplicationRecord
   validates :name, presence: true
   validates :species, presence: true
-  validates :character_type, presence: true
+  validates :character_type, presence: true, allow_nil: true
 
   enum :status, { alive: "Alive", dead: "Dead", unknown: "unknown" }
   enum :gender, { male: "Male", female: "Female", genderless: "Genderless", other: "Other" }
