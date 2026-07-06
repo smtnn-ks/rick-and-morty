@@ -1,0 +1,28 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+character_one:
+  name: character one name
+  status: Alive
+  species: character one species
+  character_type: character one type
+  gender: Male
+
+  origin_location: location_one
+  location: location_two
+
+  episodes:
+    - episode_one
+    - episode_two
+
+character_two:
+  name: character two name
+  status: Dead
+  species: character two species
+  character_type: character two type
+  gender: Female
+
+  origin_location: location_two
+  location: location_one
+
+  episodes:
+    - episode_one

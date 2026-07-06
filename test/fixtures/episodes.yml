@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+episode_one:
+  name: episode one name
+  air_date: 2001-01-01 00:00:00
+  episode_code: episode one episode code
+
+episode_two:
+  name: episode two name
+  air_date: 2002-01-01 00:00:00
+  episode_code: episode two episode code
