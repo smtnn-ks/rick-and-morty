@@ -25,11 +25,11 @@ class EpisodeTest < ActiveSupport::TestCase
     assert_not @episode.valid?
   end
 
-  test "episode_code is required" do
-    @episode.episode_code = nil
+  test "code is required" do
+    @episode.code = nil
     assert_not @episode.valid?
 
-    @episode.episode_code = ""
+    @episode.code = ""
     assert_not @episode.valid?
   end
 

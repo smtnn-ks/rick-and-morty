@@ -14,13 +14,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_05_234120) do
   create_table "characters", force: :cascade do |t|
     t.string "character_type"
     t.datetime "created_at", null: false
-    t.string "gender"
+    t.string "gender", null: false
     t.integer "location_id"
-    t.string "name"
+    t.string "name", null: false
     t.integer "origin_location_id"
-    t.string "species"
-    t.string "status"
-    t.datetime "updated_at", null: false
+    t.string "species", null: false
+    t.string "status", null: false
     t.index ["location_id"], name: "index_characters_on_location_id"
     t.index ["origin_location_id"], name: "index_characters_on_origin_location_id"
   end
@@ -33,19 +32,17 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_05_234120) do
   end
 
   create_table "episodes", force: :cascade do |t|
-    t.datetime "air_date"
+    t.datetime "air_date", null: false
+    t.string "code", null: false
     t.datetime "created_at", null: false
-    t.string "episode_code"
-    t.string "name"
-    t.datetime "updated_at", null: false
+    t.string "name", null: false
   end
 
   create_table "locations", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.string "dimensions"
-    t.string "location_type"
-    t.string "name"
-    t.datetime "updated_at", null: false
+    t.string "dimension", null: false
+    t.string "location_type", null: false
+    t.string "name", null: false
   end
 
   add_foreign_key "characters", "locations"

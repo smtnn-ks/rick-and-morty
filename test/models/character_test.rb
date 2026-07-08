@@ -52,7 +52,7 @@ class CharacterTest < ActiveSupport::TestCase
     @character.gender = "Male"
     @character.gender = "Female"
     @character.gender = "Genderless"
-    @character.gender = "Other"
+    @character.gender = "unknown"
 
     assert_raises ArgumentError do
       @character.gender = "nonexisting gender"

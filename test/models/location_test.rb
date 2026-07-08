@@ -25,11 +25,11 @@ class LocationTest < ActiveSupport::TestCase
     assert_not @location.valid?
   end
 
-  test "dimensions is required" do
-    @location.dimensions = nil
+  test "dimension is required" do
+    @location.dimension = nil
     assert_not @location.valid?
 
-    @location.dimensions = ""
+    @location.dimension = ""
     assert_not @location.valid?
   end
 

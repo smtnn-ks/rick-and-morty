@@ -6,13 +6,12 @@ character_one:
   species: character one species
   character_type: character one type
   gender: Male
+  created_at: 2026-01-01 00:00:00
 
   origin_location: location_one
   location: location_two
 
-  episodes:
-    - episode_one
-    - episode_two
+  episodes: [ episode_one, episode_two ]
 
 character_two:
   name: character two name
@@ -20,9 +19,9 @@ character_two:
   species: character two species
   character_type: character two type
   gender: Female
+  created_at: 2026-01-02 00:00:00
 
   origin_location: location_two
   location: location_one
 
-  episodes:
-    - episode_one
+  episodes: [ episode_one ]
