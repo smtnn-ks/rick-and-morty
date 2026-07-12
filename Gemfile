@@ -28,6 +28,8 @@ gem "solid_cache"
 gem "solid_queue"
 gem "solid_cable"
 
+gem "faraday"
+
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
@@ -50,8 +52,11 @@ group :development, :test do
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
 
+  gem "rubocop", require: false
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  gem "ruby-lsp"
 end
 
 group :development do
@@ -64,3 +69,5 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "minitest-mock", "~> 5.27"
