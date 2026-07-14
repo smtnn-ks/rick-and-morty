@@ -1,0 +1,57 @@
+<h1>
+  <%= @character.name %>
+</h1>
+
+<article>
+  <h2>Info</h2>
+  <p>
+    <b>Species: </b>
+    <%= @character.species %>
+  </p>
+
+  <% if @character.character_type %>
+    <p>
+      <b>Type: </b>
+      <%= @character.character_type %>
+    </p>
+  <% end %>
+
+  <p>
+    <b>Status: </b>
+    <%= @character.status %>
+  </p>
+
+  <p>
+    <b>Gender: </b>
+    <%= @character.gender %>
+  </p>
+
+  <p>
+    <b>Last known location: </b>
+    <%= @character.location.name %>
+  </p>
+
+  <% if @character.origin_location %>
+    <p>
+      <b>Origin location: </b>
+      <%= @character.origin_location.name %>
+    </p>
+  <% end %>
+
+  <p>
+    <b>Created at: </b>
+    <%= @character.created_at.to_s %>
+  </p>
+</article>
+
+<article>
+  <h2>Episodes</h2>
+  <ul>
+    <% @character.episodes.each do |episode| %>
+      <li>
+        <%= episode.code %> - <%= episode.name %>
+        <%#= link_to episode.name, episode_page(episode) %>
+      </li>
+    <% end %>
+  </ul>
+</article>

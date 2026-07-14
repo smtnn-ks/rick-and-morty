@@ -1,0 +1,40 @@
+<h1>Characters</h1>
+<dif>
+  <% @characters.each do |character| %>
+    <article>
+      <header>
+        <h3>
+          <%= link_to character.name, character_path(character) %>
+        </h3>
+      </header>
+      <div><%= character.status %></div>
+      <div><%= character.species %></div>
+
+      <div>
+        <b>Last known location: </b>
+        <%= character.location&.name || "unknown" %>
+      </div>
+
+      <div>
+        <b>First seen in: </b>
+        <%= character.episodes.first.name %>
+      </div>
+    </article>
+  <% end %>
+</dif>
+
+<div class="grid" style="display:flex;justify-content:center;align-items:center">
+  <% if @page == 1 %>
+    Back
+  <% else %>
+    <%= link_to "Back", characters_path(page: @page - 1) %>
+  <% end %>
+
+  <%= @page || 1 %>
+
+  <% if @is_last_page %>
+    Next
+  <% else %>
+    <%= link_to "Next", characters_path(page: @page + 1) %>
+  <% end %>
+</div>
