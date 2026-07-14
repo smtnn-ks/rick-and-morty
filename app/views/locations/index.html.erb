@@ -1,0 +1,37 @@
+<h1>Locations</h1>
+
+<% @locations.each do |location| %>
+  <article>
+    <header>
+      <h2>
+        <%= link_to location.name, location_path(location) %>
+      </h2>
+    </header>
+
+    <p>
+      <b>Type: </b>
+      <%= location.location_type %>
+    </p>
+
+    <p>
+      <b>Dimension: </b>
+      <%= location.dimension %>
+    </p>
+  </article>
+<% end %>
+
+<div class="grid" style="display:flex;justify-content:center;align-items:center">
+  <% if @page == 1 %>
+    Back
+  <% else %>
+    <%= link_to "Back", locations_path(page: @page - 1) %>
+  <% end %>
+
+  <%= @page %>
+
+  <% if @is_last_page %>
+    Next
+  <% else %>
+    <%= link_to "Next", locations_path(page: @page + 1) %>
+  <% end %>
+</div>

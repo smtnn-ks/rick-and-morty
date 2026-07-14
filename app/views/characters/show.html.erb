@@ -28,13 +28,13 @@
 
   <p>
     <b>Last known location: </b>
-    <%= @character.location.name %>
+    <%= link_to @character.location.name, location_path(@character.location) %>
   </p>
 
   <% if @character.origin_location %>
     <p>
       <b>Origin location: </b>
-      <%= @character.origin_location.name %>
+      <%= link_to @character.origin_location.name, location_path(@character.origin_location) %>
     </p>
   <% end %>
 

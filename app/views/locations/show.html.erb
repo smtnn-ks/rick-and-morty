@@ -1,0 +1,53 @@
+<h1>
+  <%= @location.name %>
+</h1>
+
+<article>
+  <h2>Info</h2>
+  <p>
+    <b>Type: </b>
+    <%= @location.location_type %>
+  </p>
+
+  <p>
+    <b>Dimension: </b>
+    <%= @location.dimension %>
+  </p>
+
+  <p>
+    <b>Created at: </b>
+    <%= @location.created_at.to_s %>
+  </p>
+</article>
+
+<article>
+  <details>
+    <summary>
+      <h3>Origin characters</h3>
+    </summary>
+
+    <ul>
+      <% @location.origin_characters.each do |character| %>
+        <li>
+          <%= link_to character.name, character_path(character) %>
+        </li>
+      <% end %>
+    </ul>
+  </details>
+</article>
+
+<article>
+  <details>
+    <summary>
+      <h3>Characters</h3>
+    </summary>
+
+    <ul>
+      <% @location.characters.each do |character| %>
+        <li>
+          <%= link_to character.name, character_path(character) %>
+        </li>
+      <% end %>
+    </ul>
+  </details>
+</article>
