@@ -1,7 +1,7 @@
 require "test_helper"
 
 module RickAndMortyApi
-  class LocationServiceTest < ActiveSupport::TestCase
+  class ServiceTest < ActiveSupport::TestCase
     test "get" do
       payload = {
         "info": {
@@ -11,15 +11,15 @@ module RickAndMortyApi
           {
             "id": 1,
             "name": "name-1",
-            "type": "type-1",
-            "dimension": "dimension-1",
+            "air_date": "2016-01-01 00:00:00",
+            "episode": "code-1",
             "created": "2026-01-01 00:00:00"
           },
           {
             "id": 2,
             "name": "name-2",
-            "type": "type-2",
-            "dimension": "dimension-2",
+            "air_date": "2016-01-02 00:00:00",
+            "episode": "code-2",
             "created": "2026-01-02 00:00:00"
           }
         ]
@@ -29,7 +29,7 @@ module RickAndMortyApi
         builder.response :json
 
         builder.adapter :test do |stub|
-          stub.get("/location") do |env|
+          stub.get("/episode") do |env|
             [
               200,
               { "Content-Type": "application/json" },
@@ -44,20 +44,20 @@ module RickAndMortyApi
         {
           id: 1,
           name: "name-1",
-          location_type: "type-1",
-          dimension: "dimension-1",
+          air_date: Time.parse("2016-01-01 00:00:00"),
+          code: "code-1",
           created_at: Time.parse("2026-01-01 00:00:00")
         },
         {
           id: 2,
           name: "name-2",
-          location_type: "type-2",
-          dimension: "dimension-2",
+          air_date: Time.parse("2016-01-02 00:00:00"),
+          code: "code-2",
           created_at: Time.parse("2026-01-02 00:00:00")
         }
       ]
 
-      actual_records, actual_is_last_page = LocationService.new.get
+      actual_records, actual_is_last_page = EpisodeService.new.get
       assert_equal expected_records, actual_records
       assert_equal expected_is_last_page, actual_is_last_page
     end
@@ -71,8 +71,8 @@ module RickAndMortyApi
           {
             "id": 3,
             "name": "name-3",
-            "type": "type-3",
-            "dimension": "dimension-3",
+            "air_date": "2016-01-03 00:00:00",
+            "episode": "code-3",
             "created": "2026-01-03 00:00:00"
           }
         ]
@@ -82,7 +82,7 @@ module RickAndMortyApi
         builder.response :json
 
         builder.adapter :test do |stub|
-          stub.get("/location?page=2") do |env|
+          stub.get("/episode?page=2") do |env|
             [
               200,
               { "Content-Type": "application/json" },
@@ -97,13 +97,13 @@ module RickAndMortyApi
         {
           id: 3,
           name: "name-3",
-          location_type: "type-3",
-          dimension: "dimension-3",
+          air_date: Time.parse("2016-01-03 00:00:00"),
+          code: "code-3",
           created_at: Time.parse("2026-01-03 00:00:00")
         }
       ]
 
-      actual_records, actual_is_last_page = LocationService.new.get 2
+      actual_records, actual_is_last_page = EpisodeService.new.get 2
       assert_equal expected_records, actual_records
       assert_equal expected_is_last_page, actual_is_last_page
     end
