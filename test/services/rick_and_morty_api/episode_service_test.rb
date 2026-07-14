@@ -1,7 +1,7 @@
 require "test_helper"
 
 module RickAndMortyApi
-  class ServiceTest < ActiveSupport::TestCase
+  class EpisodeServiceTest < ActiveSupport::TestCase
     test "get" do
       payload = {
         "info": {
