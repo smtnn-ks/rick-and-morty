@@ -1,0 +1,40 @@
+<h1>
+  <%= @episode.name %>
+</h1>
+
+<article>
+  <h3>Info</h3>
+
+  <p>
+    <b>Air date:</b>
+    <%= @episode.air_date.to_s %>
+  </p>
+
+  <p>
+    <b>Episode code:</b>
+    <%= @episode.code %>
+  </p>
+
+  <p>
+    <b>Created at</b>
+    <%= @episode.created_at.to_s %>
+  </p>
+</article>
+
+<article>
+  <details>
+    <summary>
+      <h3 style="display: inline">
+        Characters
+      </h3>
+    </summary>
+
+    <ul>
+      <% @episode.characters.each do |character| %>
+        <li>
+          <%= link_to character.name, character_path(character) %>
+        </li>
+      <% end %>
+    </ul>
+  </details>
+</article>

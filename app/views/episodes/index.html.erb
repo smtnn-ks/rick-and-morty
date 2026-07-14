@@ -1,0 +1,40 @@
+<h1>Episodes</h1>
+
+<% @episodes.each do |episode| %>
+  <article>
+    <h2>
+      <%= link_to episode.name, episode_path(episode) %>
+    </h2>
+
+    <p>
+      <b>Air date: </b>
+      <%= episode.air_date.to_s %>
+    </p>
+
+    <p>
+      <b>Episode code: </b>
+      <%= episode.code %>
+    </p>
+
+    <p>
+      <b>Created at: </b>
+      <%= episode.created_at.to_s %>
+    </p>
+  </article>
+<% end %>
+
+<div class="grid", style="display: flex; justify-content: center; align-items: center">
+  <% if @page == 1 %>
+    Back
+  <% else %>
+    <%= link_to "Back", episodes_path(page: @page - 1) %>
+  <% end %>
+
+  <%= @page %>
+
+  <% if @is_last_page %>
+    Next
+  <% else %>
+    <%= link_to "Next", episodes_path(page: @page + 1) %>
+  <% end %>
+</div>

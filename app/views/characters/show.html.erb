@@ -45,13 +45,19 @@
 </article>
 
 <article>
-  <h2>Episodes</h2>
-  <ul>
-    <% @character.episodes.each do |episode| %>
-      <li>
-        <%= episode.code %> - <%= episode.name %>
-        <%#= link_to episode.name, episode_page(episode) %>
-      </li>
-    <% end %>
-  </ul>
+  <details>
+    <summary>
+      <h3 style="display: inline">
+        Episodes
+      </h3>
+    </summary>
+
+    <ul>
+      <% @character.episodes.each do |episode| %>
+        <li>
+          <%= link_to episode.name, episode_path(episode) %>
+        </li>
+      <% end %>
+    </ul>
+  </details>
 </article>
