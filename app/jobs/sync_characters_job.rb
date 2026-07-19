@@ -9,7 +9,16 @@ class SyncCharactersJob < ApplicationJob
     page = 1
     loop do
       records, is_last_page = @character_service.get page
-      records.each { |record| Character.create!(record) }
+
+      records.each do |record|
+        candidate = Character.find_by("id = ?", record[:id])
+        if candidate
+          candidate.update! record
+        else
+          Character.create! record
+        end
+      end
+
       break if is_last_page
       page += 1
     end
