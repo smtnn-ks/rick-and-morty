@@ -1,47 +1,60 @@
-<h1>
-  <%= @character.name %>
-</h1>
-
 <article>
-  <h2>Info</h2>
-  <p>
-    <b>Species: </b>
-    <%= @character.species %>
-  </p>
+  <div class="grid">
+    <div>
+      <% if character.image %>
+        <%= image_tag character.image %>
+      <% else %>
+        <p>No Image</p>
+      <% end %>
+    </div>
 
-  <% if @character.character_type %>
-    <p>
-      <b>Type: </b>
-      <%= @character.character_type %>
-    </p>
-  <% end %>
+    <div>
+        <header>
+          <h2><%= @character.name %></h2>
+        </header>
 
-  <p>
-    <b>Status: </b>
-    <%= @character.status %>
-  </p>
+        <p>
+          <b>Species: </b>
+          <%= @character.species %>
+        </p>
 
-  <p>
-    <b>Gender: </b>
-    <%= @character.gender %>
-  </p>
+        <% if @character.character_type %>
+          <p>
+            <b>Type: </b>
+            <%= @character.character_type %>
+          </p>
+        <% end %>
 
-  <p>
-    <b>Last known location: </b>
-    <%= link_to @character.location.name, location_path(@character.location) %>
-  </p>
+        <p>
+          <b>Status: </b>
+          <%= @character.status %>
+        </p>
 
-  <% if @character.origin_location %>
-    <p>
-      <b>Origin location: </b>
-      <%= link_to @character.origin_location.name, location_path(@character.origin_location) %>
-    </p>
-  <% end %>
+        <p>
+          <b>Gender: </b>
+          <%= @character.gender %>
+        </p>
 
-  <p>
-    <b>Created at: </b>
-    <%= @character.created_at.to_s %>
-  </p>
+        <p>
+          <b>Last known location: </b>
+          <%= link_to @character.location.name, location_path(@character.location) %>
+        </p>
+
+        <% if @character.origin_location %>
+          <p>
+            <b>Origin location: </b>
+            <%= link_to @character.origin_location.name, location_path(@character.origin_location) %>
+          </p>
+        <% end %>
+
+        <p>
+          <b>Created at: </b>
+          <%= @character.created_at.to_s %>
+        </p>
+    </div>
+  </div>
+
+
 </article>
 
 <article>

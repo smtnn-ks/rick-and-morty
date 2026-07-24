@@ -2,22 +2,33 @@
 <dif>
   <% @characters.each do |character| %>
     <article>
-      <header>
-        <h3>
-          <%= link_to character.name, character_path(character) %>
-        </h3>
-      </header>
-      <div><%= character.status %></div>
-      <div><%= character.species %></div>
+      <div class="grid">
+        <div>
+          <% if character.image %>
+            <%= image_tag character.image %>
+          <% else %>
+            <p>No Image</p>
+          <% end %>
+        </div>
 
-      <div>
-        <b>Last known location: </b>
-        <%= character.location&.name || "unknown" %>
-      </div>
+        <div>
+          <h3>
+            <%= link_to character.name, character_path(character) %>
+          </h3>
 
-      <div>
-        <b>First seen in: </b>
-        <%= character.episodes.first.name %>
+          <div><%= character.status %></div>
+          <div><%= character.species %></div>
+
+          <div>
+            <b>Last known location: </b>
+            <%= character.location&.name || "unknown" %>
+          </div>
+
+          <div>
+            <b>First seen in: </b>
+            <%= character.episodes.first.name %>
+          </div>
+        </div>
       </div>
     </article>
   <% end %>
