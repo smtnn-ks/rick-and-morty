@@ -11,4 +11,6 @@ class Character < ApplicationRecord
   belongs_to :location, class_name: "Location", foreign_key: "location_id", optional: true
 
   has_and_belongs_to_many :episodes
+
+  has_one_attached :image
 end

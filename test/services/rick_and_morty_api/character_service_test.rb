@@ -15,6 +15,7 @@ module RickAndMortyApi
             "species": "species-1",
             "type": "type-1",
             "gender": "Male",
+            "image": "image-url-1",
             "origin": {
               "url": "https://rickandmortyapi.com/api/location/1"
             },
@@ -34,6 +35,7 @@ module RickAndMortyApi
             "species": "species-2",
             "type": "type-2",
             "gender": "Female",
+            "image": "image-url-2",
             "origin": {
               "url": "https://rickandmortyapi.com/api/location/2"
             },
@@ -72,6 +74,7 @@ module RickAndMortyApi
           species: "species-1",
           character_type: "type-1",
           gender: "Male",
+          image_url: "image-url-1",
           origin_location_id: 1,
           location_id: 10,
           episode_ids: [ 1, 2 ],
@@ -83,6 +86,7 @@ module RickAndMortyApi
           status: "Dead",
           species: "species-2",
           character_type: "type-2",
+          image_url: "image-url-2",
           gender: "Female",
           origin_location_id: 2,
           location_id: 20,
@@ -109,6 +113,7 @@ module RickAndMortyApi
             "species": "species-3",
             "type": "type-3",
             "gender": "Genderless",
+            "image": "image-url-3",
             "origin": {
               "url": "https://rickandmortyapi.com/api/location/3"
             },
@@ -146,6 +151,7 @@ module RickAndMortyApi
           species: "species-3",
           character_type: "type-3",
           gender: "Genderless",
+          image_url: "image-url-3",
           origin_location_id: 3,
           location_id: 30,
           episode_ids: [ 5 ],

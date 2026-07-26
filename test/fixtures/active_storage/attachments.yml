@@ -1,0 +1,9 @@
+character_one_image:
+  name: image
+  record: character_one (Character)
+  blob: first_blob
+
+character_two_image:
+  name: image
+  record: character_two (Character)
+  blob: first_blob

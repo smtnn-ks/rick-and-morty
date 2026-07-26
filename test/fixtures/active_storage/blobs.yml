@@ -1,0 +1,1 @@
+first_blob: <%= ActiveStorage::FixtureSet.blob filename: "tiny.jpg" %>

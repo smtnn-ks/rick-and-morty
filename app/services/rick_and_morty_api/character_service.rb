@@ -6,16 +6,16 @@ module RickAndMortyApi
       @connection = Connection.api_connection
     end
 
-    def get(page = nil)
-      query_params = { "page": page } if page
-      response = @connection.get(CHARACTER_PATH, query_params)
-      data = response.body
+      def get(page = nil)
+        query_params = { "page": page } if page
+        response = @connection.get(CHARACTER_PATH, query_params)
+        data = response.body
 
-      character_records = data.fetch("results").map { |data| map_character(data) }
-      is_last_page = data.fetch("info").fetch("next") == nil
+        character_records = data.fetch("results").map { |data| map_character(data) }
+        is_last_page = data.fetch("info").fetch("next") == nil
 
-      return character_records, is_last_page
-    end
+        return character_records, is_last_page
+      end
 
     private
 
@@ -35,6 +35,8 @@ module RickAndMortyApi
           type = data.fetch("type")
           type unless type.empty?
         end,
+
+        image_url: data.fetch("image"),
 
         origin_location_id: extract_id_from_url(data.fetch("origin").fetch("url")),
         location_id: extract_id_from_url(data.fetch("location").fetch("url")),

@@ -1,7 +1,10 @@
 require "test_helper"
 
 class SyncCharactersJobTest < ActiveJob::TestCase
+  MINIMAL_JPEG = "/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAALCAABAAEBAREA/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAVAQEBAAAAAAAAAAAAAAAAAAABAv/aAAwDAQACEAMQAAAB6gD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oACAEBAAEFAqf/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oACAECAQE/AT//2Q=="
+
   setup do
+    # character service mock
     character_service_mock = Minitest::Mock.new
 
     page_one_result = [
@@ -12,6 +15,7 @@ class SyncCharactersJobTest < ActiveJob::TestCase
         species: "species-1",
         character_type: "type-1",
         gender: "Male",
+        image_url: "image-url-1.jpeg",
         origin_location_id: locations(:location_one).id,
         location_id: locations(:location_two).id,
         episode_ids: [ episodes(:episode_one).id, episodes(:episode_two).id ],
@@ -24,6 +28,7 @@ class SyncCharactersJobTest < ActiveJob::TestCase
         species: "species-2",
         character_type: "type-2",
         gender: "Female",
+        image_url: "image-url-2.jpeg",
         origin_location_id: locations(:location_one).id,
         location_id: locations(:location_one).id,
         episode_ids: [ episodes(:episode_one).id ],
@@ -40,17 +45,27 @@ class SyncCharactersJobTest < ActiveJob::TestCase
         species: "species-3",
         character_type: "type-3",
         gender: "Genderless",
+        image_url: "image-url-3.jpeg",
         origin_location_id: locations(:location_two).id,
         location_id: locations(:location_two).id,
         episode_ids: [ episodes(:episode_two).id ],
         created_at: Time.parse("2026-01-03 00:00:00")
       }
     ]
-    character_service_mock.expect(:get,  [ page_two_result, true ], [ 2 ])
+    character_service_mock.expect(:get, [ page_two_result, true ], [ 2 ])
+
+    # image service mock
+    image_service_mock = Minitest::Mock.new
+    image_service_mock.expect(:get, MINIMAL_JPEG, [ "image-url-1.jpeg" ])
+    image_service_mock.expect(:get, MINIMAL_JPEG, [ "image-url-2.jpeg" ])
+    image_service_mock.expect(:get, MINIMAL_JPEG, [ "image-url-3.jpeg" ])
 
     @expected = [ page_one_result, page_two_result ].flatten.sort_by { |record| record[:id] }
 
-    @sync_characters_job = SyncCharactersJob.new(character_service: character_service_mock)
+    @sync_characters_job = SyncCharactersJob.new(
+      character_service: character_service_mock,
+      image_service: image_service_mock
+    )
   end
 
   test "success" do
