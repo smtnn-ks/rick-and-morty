@@ -7,7 +7,7 @@ image: smtnn-ks/rick-and-morty
 # Deploy to these servers.
 servers:
   web:
-    - <%= ENV["APP_SERVER_ADDR"] %>
+    - APP_SERVER_ADDR
   # job:
   #   hosts:
   #     - 192.168.0.1
@@ -93,6 +93,20 @@ builder:
 # Use a different ssh user than root
 # ssh:
 #   user: app
+
+accessories:
+  minio:
+    image: minio/minio:RELEASE.2026-06-28T17-06-00Z
+    host: 127.0.0.1
+    port: "9000:9000"
+    env:
+      secret:
+        - MINIO_ROOT_USER
+        - MINIO_ROOT_PASSWORD
+    command: server /data
+    directories:
+      - data:/data
+
 
 # Use accessory services (secrets come from .kamal/secrets).
 # accessories:
