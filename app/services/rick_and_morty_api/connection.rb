@@ -13,6 +13,7 @@ module RickAndMortyApi
 
       def default_connection
         Faraday.new(URL) do |builder|
+          builder.request :rate_limiter
           builder.response :json
           builder.response :raise_error
 

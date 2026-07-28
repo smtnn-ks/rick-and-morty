@@ -29,6 +29,7 @@ gem "solid_queue"
 gem "solid_cable"
 
 gem "faraday"
+gem "faraday-rate_limiter"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
